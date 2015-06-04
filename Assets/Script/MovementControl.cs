@@ -8,8 +8,8 @@ public class MovementControl : MonoBehaviour {
 	public bool isGliding = false; // true for second jump air
 
 	public float walkSpeed;
-	public float jumpForce;
 	public float glideSpeed;
+	public float jumpForce;
 
 	public Animator animator;
 
@@ -32,11 +32,12 @@ public class MovementControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey ("right") || Input.GetKeyDown ("right")) k_right = true;
-		if (Input.GetKey ("left") || Input.GetKeyDown ("left"))	k_left = true;
+		if (Input.GetKey ("right") || Input.GetKeyDown ("right"))
+			k_right = true;
+		if (Input.GetKey ("left") || Input.GetKeyDown ("left")) 
+			k_left = true;
 		if (Input.GetKeyDown("up") || Input.GetKeyDown(KeyCode.Space)) k_up = true;
-
-		animator.SetBool ("isIdle", isGround && rb.velocity.x == 0f);
+		animator.SetBool ("isIdle", isGround && !Input.GetKey("right") && !Input.GetKey("left"));
 		animator.SetBool ("isFacingRight", isFacingRight);
 		animator.SetBool ("isGround", isGround);
 		animator.SetBool ("isJumping", isJumping);
